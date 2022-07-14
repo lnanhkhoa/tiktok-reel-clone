@@ -1,19 +1,21 @@
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { useCallback, useEffect, useState } from 'react';
-import { ImageRequireSource, Linking } from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React, {useCallback, useEffect, useState} from 'react';
+import {ImageRequireSource, Linking} from 'react-native';
 
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { Camera, CameraPermissionStatus } from 'react-native-vision-camera';
-import { CONTENT_SPACING, SAFE_AREA_PADDING } from '../Constants';
-import type { Routes } from '../Routes';
+import {StyleSheet, View, Text, Image} from 'react-native';
+import {Camera, CameraPermissionStatus} from 'react-native-vision-camera';
+import {CONTENT_SPACING, SAFE_AREA_PADDING} from '../Constants';
+import type {Routes} from '../Routes';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const BANNER_IMAGE = require('../../../docs/static/img/11.png') as ImageRequireSource;
+const BANNER_IMAGE = require('../assets/11.png') as ImageRequireSource;
 
 type Props = NativeStackScreenProps<Routes, 'PermissionsPage'>;
-export function PermissionsPage({ navigation }: Props): React.ReactElement {
-  const [cameraPermissionStatus, setCameraPermissionStatus] = useState<CameraPermissionStatus>('not-determined');
-  const [microphonePermissionStatus, setMicrophonePermissionStatus] = useState<CameraPermissionStatus>('not-determined');
+export function PermissionsPage({navigation}: Props): React.ReactElement {
+  const [cameraPermissionStatus, setCameraPermissionStatus] =
+    useState<CameraPermissionStatus>('not-determined');
+  const [microphonePermissionStatus, setMicrophonePermissionStatus] =
+    useState<CameraPermissionStatus>('not-determined');
 
   const requestMicrophonePermission = useCallback(async () => {
     console.log('Requesting microphone permission...');
@@ -34,7 +36,11 @@ export function PermissionsPage({ navigation }: Props): React.ReactElement {
   }, []);
 
   useEffect(() => {
-    if (cameraPermissionStatus === 'authorized' && microphonePermissionStatus === 'authorized') navigation.replace('ReelPage');
+    if (
+      cameraPermissionStatus === 'authorized' &&
+      microphonePermissionStatus === 'authorized'
+    )
+      navigation.replace('ReelPage');
   }, [cameraPermissionStatus, microphonePermissionStatus, navigation]);
 
   return (
@@ -44,7 +50,8 @@ export function PermissionsPage({ navigation }: Props): React.ReactElement {
       <View style={styles.permissionsContainer}>
         {cameraPermissionStatus !== 'authorized' && (
           <Text style={styles.permissionText}>
-            Vision Camera needs <Text style={styles.bold}>Camera permission</Text>.
+            Vision Camera needs{' '}
+            <Text style={styles.bold}>Camera permission</Text>.
             <Text style={styles.hyperlink} onPress={requestCameraPermission}>
               Grant
             </Text>
@@ -52,8 +59,11 @@ export function PermissionsPage({ navigation }: Props): React.ReactElement {
         )}
         {microphonePermissionStatus !== 'authorized' && (
           <Text style={styles.permissionText}>
-            Vision Camera needs <Text style={styles.bold}>Microphone permission</Text>.
-            <Text style={styles.hyperlink} onPress={requestMicrophonePermission}>
+            Vision Camera needs{' '}
+            <Text style={styles.bold}>Microphone permission</Text>.
+            <Text
+              style={styles.hyperlink}
+              onPress={requestMicrophonePermission}>
               Grant
             </Text>
           </Text>

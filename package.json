@@ -12,8 +12,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "react": "18.0.0",
-    "react-native": "0.69.1",
+    "react": "17.0.2",
+    "react-native": "0.67.4",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/cameraroll": "^4.1.1",
     "@react-native-community/slider": "^4.1.8",

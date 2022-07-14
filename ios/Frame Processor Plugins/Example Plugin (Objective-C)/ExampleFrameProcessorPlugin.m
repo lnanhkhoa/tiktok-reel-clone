@@ -1,6 +1,6 @@
 //
 //  ExampleFrameProcessorPlugin.m
-//  VisionCameraExample
+//  TiktokReel
 //
 //  Created by Marc Rousavy on 01.05.21.
 //
